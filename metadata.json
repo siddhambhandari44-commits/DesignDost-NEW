@@ -1,0 +1,7 @@
+{
+  "name": "Copy of  DesignDost",
+  "description": "A student-centric platform for Indian design entrance exam preparation (UCEED, CEED, NID, NIFT), focusing on consistent practice and creative growth.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}

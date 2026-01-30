@@ -1,0 +1,185 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DesignDost - Future of Design Prep</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --apple-ease: cubic-bezier(0.16, 1, 0.3, 1);
+        --cyber-sage: #7c9473;
+      }
+      
+      /* Custom Thunder Cursor Implementation */
+      * {
+        cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%237c9473' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolygon points='13 2 3 14 12 14 11 22 21 10 12 10 13 2'%3E%3C/polygon%3E%3C/svg%3E") 0 0, auto;
+      }
+
+      button, a, [role="button"], .apple-btn, .tactile, input, textarea {
+        cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='%237c9473' stroke='%237c9473' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolygon points='13 2 3 14 12 14 11 22 21 10 12 10 13 2'%3E%3C/polygon%3E%3C/svg%3E") 0 0, pointer;
+      }
+
+      body {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        background-color: #050608;
+        color: #cbd5e1;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      h1, h2, h3, .font-outfit {
+        font-family: 'Outfit', sans-serif;
+        color: #e2e8f0;
+      }
+
+      /* Scanline Effect */
+      body::before {
+        content: " ";
+        display: block;
+        position: fixed;
+        top: 0; left: 0; bottom: 0; right: 0;
+        background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+        z-index: 1000;
+        background-size: 100% 2px, 3px 100%;
+        pointer-events: none;
+        opacity: 0.15;
+      }
+
+      /* Apple-style Glassmorph */
+      .glass-card {
+        background: rgba(20, 22, 26, 0.6);
+        backdrop-filter: blur(40px) saturate(180%);
+        -webkit-backdrop-filter: blur(40px) saturate(180%);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+        transition: all 0.6s var(--apple-ease);
+      }
+
+      .glass-card:hover {
+        background: rgba(28, 31, 36, 0.75);
+        border-color: rgba(124, 148, 115, 0.3);
+        transform: translateY(-4px);
+        box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.6);
+      }
+
+      .neon-border {
+        box-shadow: 0 0 15px rgba(124, 148, 115, 0.1), inset 0 0 10px rgba(124, 148, 115, 0.05);
+      }
+
+      /* Animations */
+      @keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+      }
+      .animate-float { animation: float 6s ease-in-out infinite; }
+
+      .gradient-text {
+        background: linear-gradient(135deg, #fff 0%, #7c9473 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .reveal {
+        opacity: 0;
+        animation: reveal 1s var(--apple-ease) forwards;
+      }
+      @keyframes reveal {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      /* Glitch Effect - Improved */
+      .glitch-text {
+        position: relative;
+        display: inline-block;
+      }
+      
+      .glitch-text::before,
+      .glitch-text::after {
+        content: attr(data-text);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #050608; /* Match background to slice */
+        overflow: hidden;
+      }
+
+      .glitch-text::before {
+        left: 2px;
+        text-shadow: -1px 0 #e89f71; /* Accent Color */
+        -webkit-text-fill-color: #fff; /* Ensure visible */
+        clip: rect(24px, 550px, 90px, 0);
+        animation: glitch-anim-1 3s infinite linear alternate-reverse;
+        z-index: 2;
+      }
+
+      .glitch-text::after {
+        left: -2px;
+        text-shadow: -1px 0 #7c9473; /* Primary Color */
+        -webkit-text-fill-color: #fff; /* Ensure visible */
+        clip: rect(85px, 550px, 140px, 0);
+        animation: glitch-anim-2 2.5s infinite linear alternate-reverse;
+        z-index: 2;
+      }
+
+      @keyframes glitch-anim-1 {
+        0% { clip: rect(10px, 9999px, 30px, 0); transform: translate(-2px, -1px); }
+        5% { clip: rect(80px, 9999px, 100px, 0); transform: translate(1px, 1px); }
+        10% { clip: rect(15px, 9999px, 20px, 0); transform: translate(-1px, 0px); }
+        15% { clip: rect(0, 0, 0, 0); transform: translate(0, 0); } /* Pause */
+        40% { clip: rect(0, 0, 0, 0); transform: translate(0, 0); } /* Pause */
+        45% { clip: rect(40px, 9999px, 60px, 0); transform: translate(2px, -2px); }
+        50% { clip: rect(90px, 9999px, 95px, 0); transform: translate(-1px, 2px); }
+        55% { clip: rect(0, 0, 0, 0); transform: translate(0, 0); } /* Pause */
+        100% { clip: rect(0, 0, 0, 0); transform: translate(0, 0); }
+      }
+
+      @keyframes glitch-anim-2 {
+        0% { clip: rect(60px, 9999px, 70px, 0); transform: translate(2px, 1px); }
+        5% { clip: rect(20px, 9999px, 40px, 0); transform: translate(-1px, -1px); }
+        10% { clip: rect(85px, 9999px, 110px, 0); transform: translate(1px, -2px); }
+        15% { clip: rect(0, 0, 0, 0); transform: translate(0, 0); } /* Pause */
+        50% { clip: rect(0, 0, 0, 0); transform: translate(0, 0); } /* Pause */
+        55% { clip: rect(10px, 9999px, 25px, 0); transform: translate(-2px, 1px); }
+        60% { clip: rect(50px, 9999px, 55px, 0); transform: translate(2px, 0px); }
+        65% { clip: rect(0, 0, 0, 0); transform: translate(0, 0); } /* Pause */
+        100% { clip: rect(0, 0, 0, 0); transform: translate(0, 0); }
+      }
+
+      ::-webkit-scrollbar { width: 4px; }
+      ::-webkit-scrollbar-track { background: #050608; }
+      ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 10px; }
+      ::-webkit-scrollbar-thumb:hover { background: #7c9473; }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.38.0",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3",
+    "lucide-react": "https://esm.sh/lucide-react@^0.563.0"
+  }
+}
+</script>
+</head>
+  <body>
+    <!-- Background Decor -->
+    <div class="fixed top-0 left-0 w-full h-full pointer-events-none -z-10 overflow-hidden bg-[#050608]">
+      <div class="absolute top-[-20%] left-[-10%] w-[70%] h-[70%] rounded-full bg-[#7c9473]/05 blur-[180px]"></div>
+      <div class="absolute bottom-[-20%] right-[-10%] w-[70%] h-[70%] rounded-full bg-[#e89f71]/03 blur-[180px]"></div>
+      <div class="absolute top-[30%] left-[40%] w-px h-full bg-gradient-to-b from-transparent via-[#7c9473]/10 to-transparent"></div>
+      <!-- Adding Subtle Grain -->
+      <div class="absolute inset-0 opacity-[0.03] pointer-events-none" style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22 opacity=%221%22/%3E%3C/svg%3E');"></div>
+    </div>
+    
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
